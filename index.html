@@ -3,27 +3,769 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Surenler LLC — Apps</title>
+  <title>Surenler LLC — Mobile Games & Independent Apps</title>
+  <meta name="description" content="Official home of Surenler LLC. Discover REPS (Live on App Store), Road Rage: Endless Chase, Idle Merge Empire, Salvage Forge, and upcoming projects.">
+  <meta name="theme-color" content="#070b14">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Surenler LLC — Mobile Games & Independent Apps">
+  <meta property="og:description" content="Discover REPS, Road Rage, Idle Merge Empire, Salvage Forge, and innovative independent apps.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://muratsur.github.io">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700;800;900&display=swap" rel="stylesheet">
+
   <style>
-    body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
-      font-family:-apple-system,Segoe UI,Roboto,sans-serif; color:#eaf4ff;
-      background:linear-gradient(180deg,#07111f 0%,#0d1728 52%,#050b15 100%); text-align:center; padding:24px; }
-    .card { max-width:520px; }
-    h1 { font-size:1.9rem; margin:0 0 .3rem; }
-    p { color:#9fb4c7; line-height:1.5; }
-    a.app { display:inline-block; margin-top:18px; padding:12px 22px; border-radius:12px;
-      background:#1d5f7f; color:#fff; text-decoration:none; font-weight:700;
-      border:1px solid rgba(127,212,240,.5); }
-    .foot { margin-top:28px; font-size:.8rem; color:#5f7183; }
-    a.foot-link { color:#7fb4d4; }
+    :root {
+      --bg-dark: #060a12;
+      --bg-card: rgba(14, 22, 38, 0.75);
+      --bg-card-hover: rgba(20, 32, 56, 0.88);
+      --border-card: rgba(255, 255, 255, 0.08);
+      --border-card-hover: rgba(56, 189, 248, 0.35);
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent-cyan: #38bdf8;
+      --accent-blue: #2563eb;
+      --accent-red: #ef4444;
+      --accent-amber: #f59e0b;
+      --accent-emerald: #10b981;
+      --glow-blue: rgba(56, 189, 248, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 25%, rgba(239, 68, 68, 0.06) 0%, transparent 45%),
+        radial-gradient(circle at 50% 75%, rgba(99, 102, 241, 0.07) 0%, transparent 50%),
+        linear-gradient(180deg, #060a12 0%, #0a1120 50%, #05080f 100%);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    header {
+      padding: 48px 0 24px;
+      text-align: center;
+    }
+
+    .studio-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      color: var(--accent-cyan);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .studio-badge .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-cyan);
+      box-shadow: 0 0 10px var(--accent-cyan);
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    h1.hero-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, #ffffff 30%, #cbd5e1 70%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p.hero-subtitle {
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 36px;
+      font-weight: 400;
+    }
+
+    /* Filter Bar */
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-muted);
+      border: 1px solid var(--border-card);
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .filter-btn:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .filter-btn.active {
+      background: var(--accent-cyan);
+      color: #060a12;
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
+    }
+
+    /* Grid */
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 32px;
+      margin-bottom: 80px;
+    }
+
+    @media (max-width: 768px) {
+      .apps-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Card */
+    .app-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 24px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      backdrop-filter: blur(12px);
+      position: relative;
+    }
+
+    .app-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-card-hover);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 25px var(--glow-blue);
+      background: var(--bg-card-hover);
+    }
+
+    /* Card Featured Ribbon */
+    .card-banner {
+      position: relative;
+      background: #020617;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+    }
+
+    .card-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .app-card:hover .card-banner img {
+      transform: scale(1.05);
+    }
+
+    .status-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      z-index: 2;
+    }
+
+    .badge-live-apple {
+      background: #000;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .badge-live-both {
+      background: #047857;
+      color: #ecfdf5;
+      border: 1px solid #10b981;
+    }
+
+    .badge-dev {
+      background: #78350f;
+      color: #fef3c7;
+      border: 1px solid #f59e0b;
+    }
+
+    /* Card Body */
+    .card-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .app-genre {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .app-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .app-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    /* Gallery Row inside card */
+    .thumbnail-gallery {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 22px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.15) transparent;
+    }
+
+    .thumbnail-gallery img {
+      height: 75px;
+      width: auto;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .thumbnail-gallery img:hover {
+      border-color: var(--accent-cyan);
+      transform: scale(1.08);
+    }
+
+    /* CTA Buttons */
+    .card-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      flex: 1;
+      min-width: 140px;
+      text-align: center;
+    }
+
+    .btn-apple {
+      background: #000;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-apple:hover {
+      background: #111;
+      border-color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .btn-google {
+      background: #0f172a;
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .btn-google:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--accent-cyan);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border-card);
+      flex: 0 0 auto;
+      min-width: unset;
+      padding: 10px 14px;
+    }
+
+    .btn-ghost:hover {
+      color: #fff;
+      border-color: rgba(255,255,255,0.3);
+    }
+
+    /* Philosophy Banner */
+    .philosophy-section {
+      background: rgba(14, 22, 38, 0.5);
+      border: 1px solid var(--border-card);
+      border-radius: 28px;
+      padding: 48px;
+      margin-bottom: 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+      margin-top: 36px;
+      text-align: left;
+    }
+
+    .phil-item {
+      padding: 24px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .phil-icon {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .phil-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .phil-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* Lightbox Modal */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      cursor: zoom-out;
+    }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+      animation: zoomIn 0.25s ease;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-card);
+      padding: 48px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 16px 0 24px;
+      flex-wrap: wrap;
+    }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Surenler LLC</h1>
-    <p>Independent mobile games and apps.</p>
-    <a class="app" href="https://apps.apple.com/app/id6793362171">Salvage Forge on the App Store</a>
-    <p class="foot">Questions? <a class="foot-link" href="mailto:murat@surenlerllc.com">murat@surenlerllc.com</a></p>
+
+  <!-- Lightbox Viewer -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Fullscreen screenshot">
   </div>
+
+  <div class="container">
+    
+    <!-- Hero Header -->
+    <header>
+      <div class="studio-badge">
+        <span class="dot"></span>
+        Surenler LLC Studio
+      </div>
+      <h1 class="hero-title">Mobile Games &amp; Independent Apps</h1>
+      <p class="hero-subtitle">
+        Building high-octane racers, engaging idle tycoons, and clean, tracker-free fitness tools.
+      </p>
+
+      <!-- Category Filter -->
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterCategory('all', this)">All Titles (6)</button>
+        <button class="filter-btn" onclick="filterCategory('games', this)">🎮 Games</button>
+        <button class="filter-btn" onclick="filterCategory('apps', this)">📱 Apps</button>
+        <button class="filter-btn" onclick="filterCategory('dev', this)">⚡ In Development</button>
+      </div>
+    </header>
+
+    <!-- Apps Grid -->
+    <main class="apps-grid">
+
+      <!-- 1. REPS (Flagship Fitness App) -->
+      <article class="app-card" data-category="apps">
+        <div class="card-banner">
+          <span class="status-badge badge-live-apple">🍎 Live on App Store</span>
+          <img src="assets/images/reps-1.webp" alt="REPS Workout App" onclick="openLightbox(this.src)">
+        </div>
+        <div class="card-body">
+          <div class="card-header-row">
+            <span class="app-genre">Health &amp; Fitness</span>
+          </div>
+          <h2 class="app-title">REPS — Bodyweight + Kettlebell</h2>
+          <p class="app-desc">
+            No tracking. Just training. A minimalist, no-nonsense workout timer with 8 structured workouts, interval timers, custom rep progression, and zero tracking.
+          </p>
+
+          <div class="thumbnail-gallery">
+            <img src="assets/images/reps-1.webp" alt="REPS Dashboard" onclick="openLightbox(this.src)">
+            <img src="assets/images/reps-2.webp" alt="REPS Workouts" onclick="openLightbox(this.src)">
+            <img src="assets/images/reps-3.webp" alt="REPS Exercise Guide" onclick="openLightbox(this.src)">
+            <img src="assets/images/reps-4.webp" alt="REPS Goal Rings" onclick="openLightbox(this.src)">
+            <img src="assets/images/reps-5.webp" alt="REPS Training Timer" onclick="openLightbox(this.src)">
+          </div>
+
+          <div class="card-actions">
+            <a class="btn btn-apple" href="https://apps.apple.com/app/reps-bodyweight-kettlebell/id6810940641" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 1.01-2.87-.9.04-2.01.6-2.65 1.35-.57.65-1.07 1.72-.94 2.76 1.01.08 2.05-.51 2.58-1.24z"/></svg>
+              View on App Store
+            </a>
+            <a class="btn btn-ghost" href="/reps/" title="REPS Support & Privacy">
+              Support
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2. Road Rage: Endless Chase -->
+      <article class="app-card" data-category="games">
+        <div class="card-banner">
+          <span class="status-badge badge-live-both">🟢 Live on iOS &amp; Android</span>
+          <img src="assets/images/roadrage-1.webp" alt="Road Rage Endless Chase" onclick="openLightbox(this.src)">
+        </div>
+        <div class="card-body">
+          <div class="card-header-row">
+            <span class="app-genre">Arcade Racing</span>
+          </div>
+          <h2 class="app-title">Road Rage: Endless Chase</h2>
+          <p class="app-desc">
+            High-speed retro highway chase action! Dodge traffic, drift tight highway turns, execute precision takedowns, and outrun law enforcement across multiple biomes.
+          </p>
+
+          <div class="thumbnail-gallery">
+            <img src="assets/images/roadrage-1.webp" alt="Road Rage Gameplay" onclick="openLightbox(this.src)">
+            <img src="assets/images/roadrage-2.webp" alt="Road Rage Highway" onclick="openLightbox(this.src)">
+            <img src="assets/images/roadrage-3.webp" alt="Road Rage Garage" onclick="openLightbox(this.src)">
+            <img src="assets/images/roadrage-4.webp" alt="Road Rage Pursuit" onclick="openLightbox(this.src)">
+            <img src="assets/images/roadrage-5.webp" alt="Road Rage Night" onclick="openLightbox(this.src)">
+          </div>
+
+          <div class="card-actions">
+            <a class="btn btn-apple" href="https://apps.apple.com/app/road-rage-endless-chase/id6479633858" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 1.01-2.87-.9.04-2.01.6-2.65 1.35-.57.65-1.07 1.72-.94 2.76 1.01.08 2.05-.51 2.58-1.24z"/></svg>
+              App Store
+            </a>
+            <a class="btn btn-google" href="https://play.google.com/store/apps/details?id=com.ramline.roadrage" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a2.007 2.007 0 0 1-.61-1.424V3.238c0-.53.226-1.038.61-1.424zM15.207 13.415l2.42 2.42-12.723 7.34 10.303-9.76zm0-2.83L4.904.825l12.723 7.34-2.42 2.42zm1.414 1.415l3.86 2.228a1.503 1.503 0 0 0 0-2.602l-3.86-2.228 1.414 1.414-1.414 1.188z"/></svg>
+              Google Play
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3. Idle Merge Empire -->
+      <article class="app-card" data-category="games">
+        <div class="card-banner">
+          <span class="status-badge badge-live-apple">🍎 Version 1.1.0</span>
+          <img src="assets/images/roadrage-3.webp" alt="Idle Merge Empire" style="filter: hue-rotate(180deg);" onclick="openLightbox(this.src)">
+        </div>
+        <div class="card-body">
+          <div class="card-header-row">
+            <span class="app-genre">Idle Tycoon / Merge</span>
+          </div>
+          <h2 class="app-title">Idle Merge Empire</h2>
+          <p class="app-desc">
+            Build a sprawling kingdom through strategic gem merging. Explore 5 diverse realms, discover 75+ mythical relics, complete royal trials, and harvest offline fortunes.
+          </p>
+
+          <div class="thumbnail-gallery">
+            <img src="assets/images/roadrage-3.webp" style="filter: hue-rotate(180deg);" alt="Empire Realm" onclick="openLightbox(this.src)">
+            <img src="assets/images/roadrage-4.webp" style="filter: hue-rotate(180deg);" alt="Empire Gem Forge" onclick="openLightbox(this.src)">
+          </div>
+
+          <div class="card-actions">
+            <a class="btn btn-apple" href="https://apps.apple.com/app/id6792235569" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 1.01-2.87-.9.04-2.01.6-2.65 1.35-.57.65-1.07 1.72-.94 2.76 1.01.08 2.05-.51 2.58-1.24z"/></svg>
+              View on App Store
+            </a>
+            <a class="btn btn-ghost" href="/IdleMergeEmpire/" title="Privacy Policy">
+              Privacy
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4. Salvage Forge -->
+      <article class="app-card" data-category="games">
+        <div class="card-banner">
+          <span class="status-badge badge-live-apple">🍎 Live on App Store</span>
+          <img src="assets/images/substrate-1.webp" alt="Salvage Forge" onclick="openLightbox(this.src)">
+        </div>
+        <div class="card-body">
+          <div class="card-header-row">
+            <span class="app-genre">Sci-Fi Idle Merge</span>
+          </div>
+          <h2 class="app-title">Salvage Forge</h2>
+          <p class="app-desc">
+            Transform scrap into interstellar starships. Master 8 tiers of industrial crafting, automate scrap smelters, activate prestige multipliers, and conquer seasonal contracts.
+          </p>
+
+          <div class="thumbnail-gallery">
+            <img src="assets/images/substrate-1.webp" alt="Salvage Facility" onclick="openLightbox(this.src)">
+            <img src="assets/images/substrate-2.webp" alt="Smelting Complex" onclick="openLightbox(this.src)">
+            <img src="assets/images/substrate-3.webp" alt="Fabrication Deck" onclick="openLightbox(this.src)">
+          </div>
+
+          <div class="card-actions">
+            <a class="btn btn-apple" href="https://apps.apple.com/app/salvage-forge/id6793362171" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 1.01-2.87-.9.04-2.01.6-2.65 1.35-.57.65-1.07 1.72-.94 2.76 1.01.08 2.05-.51 2.58-1.24z"/></svg>
+              View on App Store
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5. Substrate (In Dev) -->
+      <article class="app-card" data-category="dev">
+        <div class="card-banner">
+          <span class="status-badge badge-dev">⚡ In Development</span>
+          <img src="assets/images/substrate-5.webp" alt="Substrate 3D Project" onclick="openLightbox(this.src)">
+        </div>
+        <div class="card-body">
+          <div class="card-header-row">
+            <span class="app-genre">Atmospheric 3D</span>
+          </div>
+          <h2 class="app-title">Substrate</h2>
+          <p class="app-desc">
+            An atmospheric exploration experience exploring subterranean industrial depths, dynamic lighting, and environmental storytelling.
+          </p>
+
+          <div class="thumbnail-gallery">
+            <img src="assets/images/substrate-5.webp" alt="Substrate Chamber" onclick="openLightbox(this.src)">
+            <img src="assets/images/substrate-7.webp" alt="Substrate Bridge" onclick="openLightbox(this.src)">
+            <img src="assets/images/substrate-10.webp" alt="Substrate Depth" onclick="openLightbox(this.src)">
+          </div>
+
+          <div class="card-actions">
+            <button class="btn btn-ghost" style="width: 100%;" disabled>
+              Coming Soon
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6. Restaurant POS (In Dev) -->
+      <article class="app-card" data-category="dev">
+        <div class="card-banner">
+          <span class="status-badge badge-dev">⚡ In Development</span>
+          <img src="assets/images/pos-1.webp" alt="Point of Sale System" onclick="openLightbox(this.src)">
+        </div>
+        <div class="card-body">
+          <div class="card-header-row">
+            <span class="app-genre">Enterprise POS</span>
+          </div>
+          <h2 class="app-title">Main Street POS</h2>
+          <p class="app-desc">
+            A fast, modern point-of-sale terminal designed for restaurants and retail. Features PIN authentication, rapid menu entry, and staff shift management.
+          </p>
+
+          <div class="thumbnail-gallery">
+            <img src="assets/images/pos-1.webp" alt="POS Pin Login" onclick="openLightbox(this.src)">
+            <img src="assets/images/pos-2.webp" alt="POS Dashboard" onclick="openLightbox(this.src)">
+            <img src="assets/images/pos-4.webp" alt="POS Terminal" onclick="openLightbox(this.src)">
+            <img src="assets/images/pos-6.webp" alt="POS Orders" onclick="openLightbox(this.src)">
+          </div>
+
+          <div class="card-actions">
+            <button class="btn btn-ghost" style="width: 100%;" disabled>
+              Enterprise Preview
+            </button>
+          </div>
+        </div>
+      </article>
+
+    </main>
+
+    <!-- Studio Philosophy -->
+    <section class="philosophy-section">
+      <h2 style="font-family:'Outfit',sans-serif; font-size:2rem; font-weight:800; color:#fff;">Our Studio Philosophy</h2>
+      <p style="color:var(--text-muted); max-width:620px; margin:10px auto 0;">
+        We believe mobile apps and games should be transparent, respectful of your privacy, and crafted with genuine care.
+      </p>
+
+      <div class="philosophy-grid">
+        <div class="phil-item">
+          <div class="phil-icon">🔒</div>
+          <h3 class="phil-title">Privacy-First Design</h3>
+          <p class="phil-desc">No predatory tracking or bloated analytics. Our tools like REPS are built completely offline-first.</p>
+        </div>
+        <div class="phil-item">
+          <div class="phil-icon">🏎️</div>
+          <h3 class="phil-title">Pure Gameplay</h3>
+          <p class="phil-desc">From responsive arcade physics in Road Rage to rewarding progression loops in our idle titles.</p>
+        </div>
+        <div class="phil-item">
+          <div class="phil-icon">✨</div>
+          <h3 class="phil-title">Independent Focus</h3>
+          <p class="phil-desc">Built with passion as an independent creator, listening closely to feedback and delivering regular polish.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p style="font-weight:700; color:#fff; font-size:1.1rem; margin-bottom:8px;">Surenler LLC</p>
+      <div class="footer-links">
+        <a href="mailto:murat@surenlerllc.com">Contact Support</a>
+        <span>•</span>
+        <a href="/reps/">REPS Portal</a>
+        <span>•</span>
+        <a href="/IdleMergeEmpire/">Idle Merge Empire Privacy</a>
+      </div>
+      <p style="font-size:0.8rem; color:#64748b;">
+        &copy; 2026 Surenler LLC. All rights reserved. Apple and App Store are trademarks of Apple Inc. Google Play is a trademark of Google LLC.
+      </p>
+    </footer>
+
+  </div>
+
+  <script>
+    function filterCategory(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.app-card');
+      cards.forEach(card => {
+        if (category === 'all') {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = card.dataset.category === category ? 'flex' : 'none';
+        }
+      });
+    }
+
+    function openLightbox(src) {
+      const lb = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      img.src = src;
+      lb.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
 </body>
 </html>
